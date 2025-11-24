@@ -91,50 +91,31 @@ stages:
           - data.matrix
           - data.true_labels
     outputs:
-      - id: analysis.predicted_ks_range
-        path: "{input}/{stage}/{module}/{params}/{dataset}_ks_range.labels.gz"
+      - id: analysis.prediction
+        path: "{input}/{stage}/{module}/{params}/{dataset}-.labels.gz"
  - id: metrics
     modules:
       - id: flow_metrics
         name: "benchmark metrics for flow/cytof data"
         software_environment: "py"
         repository:
-          url:
-          commit:
+          url: https://github.com/kaae-2/ob-pipeline-metrics
+          commit: 71833ff
         parameters:
-       #  - values: [] #TODO: Add parameters
+        - values: ["--metric", "all"]
+       #  - values: ["--metric", "accuracy"]
+       #  - values: ["--metric", "precision"]
+       #  - values: ["--metric", "recall"]
+       #  - values: ["--metric", "f1"]
+       #  - values: ["--metric", "f1_score"]
+       #  - values: ["--metric", "runtime"]
+       #  - values: ["--metric", "overlap"]
+       #  - values: ["--metric", "scalability"]
+      #  - values: ["--metric", ""] #Template: Add parameters
     inputs:
       - entries:
-          - analysis.predicted_ks_range
+          - analysis.prediction
           - data.true_labels
     outputs:
       - id: metrics.scores
-        path: "{input}/{stage}/{module}/{params}/{dataset}.scores.gz"
-
-#   - id: metrics
-#     modules:
-#       - id: partition_metrics
-#         name: "clustbench partition metrics"
-#         software_environment: "clustbench"
-#         repository:
-#           url: https://github.com/imallona/clustbench_metrics
-#           commit: 9132d45
-#         parameters:
-#           - values: ["--metric", "normalized_clustering_accuracy"]
-#           - values: ["--metric", "adjusted_fm_score"]
-#           # - values: ["--metric", "adjusted_mi_score"]
-#           # - values: ["--metric", "adjusted_rand_score"]
-#           # - values: ["--metric", "fm_score"]
-#           # - values: ["--metric", "mi_score"]
-#           # - values: ["--metric", "normalized_clustering_accuracy"]
-#           # - values: ["--metric", "normalized_mi_score"]
-#           # - values: ["--metric", "normalized_pivoted_accuracy"]
-#           # - values: ["--metric", "pair_sets_index"]
-#           # - values: ["--metric", "rand_score"]
-#     inputs:
-#       - entries:
-#           - clustering.predicted_ks_range
-#           - data.true_labels
-#     outputs:
-#       - id: metrics.scores
-#         path: "{input}/{stage}/{module}/{params}/{dataset}.scores.gz"
+        path: "{input}/{stage}/{module}/{params}/{dataset}.flow_metrics.json.gz"
