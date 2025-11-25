@@ -84,10 +84,10 @@ stages:
     modules:
       - id: dgcytof
         name: "DG-CyTOF"
-        software_environment: "py-old"
+        software_environment: "py"
         repository:
           url: https://github.com/kaae-2/ob-pipeline-dgcytof
-          commit: 7a53198
+          commit: 0eca09e
         parameters:
           # - values: [] #TODO: Add parameters
         inputs:
