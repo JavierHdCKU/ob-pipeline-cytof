@@ -86,13 +86,13 @@ stages:
         commit: 75a0c3b
       parameters:
         # - values: [] #TODO: Add parameters
-
-    - entries:
-        - data.matrix
-        - data.true_labels
-  outputs:
-    - id: analysis.prediction
-      path: "{input}/{stage}/{module}/{params}/{dataset}.labels.gz"
+      inputs:
+        - entries:
+            - data.matrix
+            - data.true_labels
+      outputs:
+        - id: analysis.prediction
+          path: "{input}/{stage}/{module}/{params}/{dataset}.labels.gz"
   # - id: metrics
   #   modules:
   #     - id: flow_metrics
