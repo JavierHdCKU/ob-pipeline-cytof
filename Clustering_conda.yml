@@ -76,9 +76,9 @@ stages:
           - data.labels
     outputs:
       - id: data.matrix
-        path: "{input}/{stage}/{module}/{dataset}.matrix.gz"
+        path: "{input}/{stage}/{module}/{params}/{dataset}.matrix.gz"
       - id: data.true_labels
-        path: "{input}/{stage}/{module}/{dataset}.true_labels.gz"
+        path: "{input}/{stage}/{module}/{params}/{dataset}.true_labels.gz"
 
   - id: analysis
     modules:
