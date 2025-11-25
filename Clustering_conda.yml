@@ -42,7 +42,7 @@ stages:
         software_environment: "py"
         repository:
           url: https://github.com/kaae-2/ob-pipeline-data
-          commit: 83b3060
+          commit: e0bfaf7
         parameters:
           - values: ["--dataset_name", "Levine_13dim", "--transformed", "false"]
           # - values: ["--dataset_name", "Levine_13dim", "--transformed", "true"]
