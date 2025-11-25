@@ -56,25 +56,25 @@ stages:
         path: "{input}/{stage}/{module}/{params}/{dataset}.data.gz"
       - id: data.labels
         path: "{input}/{stage}/{module}/{params}/{dataset}.labels.gz"
-  # - id: preprocessing
-  #   modules:
-  #     - id: data_preprocessing
-  #       name: "Data preprocessing for CyTOF datasets"
-  #       software_environment: "py"
-  #       repository:
-  #         url: https://github.com/kaae-2/ob-pipeline-preprocessing
-  #         commit: 898733a
-  #       parameters:
+  - id: preprocessing
+    modules:
+      - id: data_preprocessing
+        name: "Data preprocessing for CyTOF datasets"
+        software_environment: "py"
+        repository:
+          url: https://github.com/kaae-2/ob-pipeline-preprocessing
+          commit: 898733a
+        parameters:
 
-  #   inputs:
-  #     - entries:
-  #         - data.raw
-  #         - data.labels
-  #   outputs:
-  #     - id: data.matrix
-  #       path: "{input}/{stage}/{module}/{params}/{dataset}.matrix.gz"
-  #     - id: data.true_labels
-  #       path: "{input}/{stage}/{module}/{params}/{dataset}.true_labels.gz"
+    inputs:
+      - entries:
+          - data.raw
+          - data.labels
+    outputs:
+      - id: data.matrix
+        path: "{input}/{stage}/{module}/{params}/{dataset}.matrix.gz"
+      - id: data.true_labels
+        path: "{input}/{stage}/{module}/{params}/{dataset}.true_labels.gz"
 
   # - id: analysis
   #   modules:
