@@ -90,13 +90,13 @@ stages:
           commit: dbdf3e1
         parameters:
           # - values: [] #TODO: Add parameters
-        inputs:
-          - entries:
-              - data.matrix
-              - data.true_labels
-        outputs:
-          - id: analysis.prediction
-            path: "{input}/{stage}/{module}/{params}/{dataset}.labels.gz"
+    inputs:
+      - entries:
+          - data.matrix
+          - data.true_labels
+    outputs:
+      - id: analysis.prediction
+        path: "{input}/{stage}/{module}/{params}/{dataset}.labels.gz"
   # - id: metrics
   #   modules:
   #     - id: flow_metrics
