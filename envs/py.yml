@@ -8,6 +8,7 @@ dependencies:
   - conda-forge::scikit-bio=0.6.2
   - conda-forge::pytorch=2.3.1
   - conda-forge::torchvision=0.18.1
+  - conda-forge::hdbscan=0.8.38
   - pip:
       #- "clustering-benchmarks==1.1.5"
       - "https://github.com/gagolews/clustering-benchmarks/releases/download/v1.1.5/clustering_benchmarks-1.1.5.tar.gz"
@@ -21,7 +22,6 @@ dependencies:
       - "seaborn==0.10.1"
       - "matplotlib==3.8.0"
       - "umap_learn==0.4.6"
-      - "hdbscan==0.8.26"
       - "scikit-learn==1.5.2"
       - "scikit-plot==0.3.7"
       - "umap-learn==0.4.6"
