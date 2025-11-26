@@ -97,7 +97,7 @@ stages:
           - data.true_labels
     outputs:
       - id: analysis.prediction
-        path: "{input}/{stage}/{module}/{params}/{dataset}.labels.gz"
+        path: "{input}/{stage}/{module}/{params}/{dataset}_predicted_labels.labels.gz"
   - id: metrics
     modules:
       - id: flow_metrics
