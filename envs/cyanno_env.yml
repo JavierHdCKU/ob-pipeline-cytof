@@ -1,0 +1,34 @@
+name: cyanno_env
+channels:
+  - conda-forge
+  - nodefaults
+
+dependencies:
+  # ---- Core Python ----
+  - python=3.11
+  - pip
+
+  # ---- OmniBenchmark dependencies required for schema loading ----
+  - pyyaml        # provides yaml._yaml C-extension
+  - isodate       # rdflib -> linkml -> omni_schema
+  - rdflib
+  - pyparsing
+  - webencodings
+
+  # ---- Scientific stack ----
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn
+  - joblib
+
+  # ---- C extensions ----
+  - cython
+
+  # ---- FCS file parser ----
+  - fcsparser
+
+  # ---- Install pydantic + pydantic-core via pip (VERY IMPORTANT) ----
+  - pip:
+      - pydantic>=2.6
+      - pydantic-core>=2.16

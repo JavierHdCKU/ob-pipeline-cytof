@@ -20,6 +20,11 @@ software_environments:
     description: "CRAN R environment"
     conda: envs/cran.yml
     envmodule: cran
+  cyanno:
+    description: "CyAnno module environment"
+    conda: envs/cyanno_env.yml
+    envmodule: cyanno
+
 # metric_collectors:
 #   - id: plotting
 #     name: "Single-backend metric collector."
@@ -81,23 +86,33 @@ stages:
         path: "{input}/{stage}/{module}/{params}/{dataset}.true_labels.gz"
 
   - id: analysis
-    modules:
-      - id: dgcytof
-        name: "DG-CyTOF"
-        software_environment: "py"
-        repository:
-          url: https://github.com/kaae-2/ob-pipeline-dgcytof
-          commit: d5d2e6f
-
-        parameters:
-          # - values: [] #TODO: Add parameters
     inputs:
       - entries:
           - data.matrix
           - data.true_labels
+
+    modules:
+
+      - id: dgcytof
+        name: "DG-CyTOF"
+        software_environment: py
+        repository:
+          url: https://github.com/kaae-2/ob-pipeline-dgcytof
+          commit: d5d2e6f
+        parameters: []
+
+      - id: cyanno
+        name: "CyAnno annotator"
+        software_environment: cyanno
+        repository:
+          url: https://github.com/JavierHdCKU/ob-pipeline-cyanno
+          commit: d45303799244b31e99a9ef4d8b16bc8fbff8befa
+        parameters: []
+
     outputs:
       - id: analysis.prediction
         path: "{input}/{stage}/{module}/{params}/{dataset}_predicted_labels.txt"
+
   - id: metrics
     modules:
       - id: flow_metrics
