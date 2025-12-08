@@ -119,8 +119,8 @@ stages:
         name: "benchmark metrics for flow/cytof data"
         software_environment: "py"
         repository:
-          url: https://github.com/kaae-2/ob-pipeline-metrics
-          commit: cd90760
+          url: https://github.com/JavierHdCKU/ob-pipeline-metrics
+          commit: da8baeb65bb845ecdb51cc878c9bdd1543e8958c
         parameters:
           - values: ["--metric", "all"]
         #  - values: ["--metric", "accuracy"]
