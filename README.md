@@ -19,20 +19,16 @@ The ob-pipeline-cytof enables transparent, reproducible, and objective benchmark
 - [Overview](#overview)
 - [Key Features](#key-features)
 - [Architecture](#architecture)
-- [Gold standard datasets](#architecture)
-- [Selected tools](#architecture)
-- [Requirements for new tools](#requirements)
-- [Repository Structure for New Tools](#requirements)
+- [Gold standard datasets](#Gold-standard-datasets)
+- [Selected tools](#Selected-tools)
+- [Requirements for new tools](#Requirements-for-new-tools)
+- [Repository Structure for New Tools](#Repository-Structure-for-New-Tools)
 - [Installation](#installation)
 - [Quick Start](#quick-start)
 - [Configuration](#configuration)
 - [Inputs & Outputs](#inputs--outputs)
-- [Pipeline Stages](#pipeline-stages)
-- [Execution Modes](#execution-modes)
 - [Monitoring, Logs & Outputs Layout](#monitoring-logs--outputs-layout)
 - [Testing & Quality](#testing--quality)
-- [Project Structure](#project-structure)
-- [Performance Notes](#performance-notes)
 - [Troubleshooting](#troubleshooting)
 - [FAQ](#faq)
 - [Contributing](#contributing)
@@ -67,7 +63,7 @@ The outcome of this work will provide a clearer understanding of the capabilitie
 
 ---
 
-## Architecture & Technology Stack
+## Architecture
 ```mermaid
 ---
 config:
@@ -190,7 +186,7 @@ This dataset provides a stringent test for evaluating robustness and sensitivity
 ---
 
 
-## Requirements for Integrating New Tools into the Pipeline
+## Requirements for new tools
 
 To add a new cell-type annotation tool to the pipeline, your implementation must satisfy the following requirements:
 
