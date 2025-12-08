@@ -1,46 +1,51 @@
-flowchart LR
-classDef param fill:#f96
-subgraph data
-py
-end
-subgraph clustering
-DGCyTOF
-py --> DGCyTOF
-SCINA
-py --> SCINA
-CyCADA
-py --> CyCADA
-GateMeClass
-py --> GateMeClass
+---
+config:
+  layout: elk
+---
+flowchart TB
+ subgraph Datasets["Datasets"]
+        FR-FCM-Z367["CyTOF_PBMCs"]
+        FR-FCM-Z2KP["FlowCytometry_PBMCs"]
+        Mosmann_rare["Rare_T-cell Dataset"]
+  end
+ subgraph Split["Training / Test Division"]
+        train["Training: 1 sample"]
+        test["Test: Rest of dataset"]
+  end
+ subgraph CellAnnotation["Cell Annotation Methods"]
+        DGCyTOF["DGCyTOF"]
+        CyAnno["CyAnno"]
+        Random["Random"]
+        GateMeClass["GateMeClass"]
+  end
+ subgraph Metrics["Benchmark Metrics"]
+        accuracy["Accuracy"]
+        precision["Precision"]
+        recall["Recall"]
+        f1["F1 Score"]
+        runtime["Runtime"]
+        scalability["Scalability"]
+        mcc["MCC"]
+        popfreq_corr["PopFreq Correlation"]
+        aucroc["AUC-ROC"]
+  end
+ subgraph ParamsD["Parameters: DGCyTOF"]
+        p_dgc["--default"]
+  end
+ subgraph ParamsC["Parameters: CyAnno"]
+        p_cyanno["--default"]
+  end
+ subgraph ParamsG["Parameters: GateMeClass"]
+        p_gate["--default"]
+  end
+    Datasets --> Split
+    Split --> CellAnnotation
+    CellAnnotation --> Metrics
+    ParamsD -.-> DGCyTOF
+    ParamsC -.-> CyAnno
+    ParamsG -.-> GateMeClass
 
-        end
-        subgraph metrics
-                partition_metrics
-                CyCADA --> partition_metrics
-                DGCyTOF --> partition_metrics
-                GateMeClass --> partition_metrics
-                SCINA --> partition_metrics
-        end
-        subgraph params_py
-                46bb23e08cfbf0ba58db7fd92e04651ba558adc9a01ad0e7bacebda3866d7821['--dataset_generator', 'py', '--dataset_name', 'Dataset1']
-                1f2b8e54c70f89988387ddb3f4c54e7af6fa478514af691527cc9c488cdaca11['--dataset_generator', 'py', '--dataset_name', 'Dataset2']
-        end
-        params_py:::param --o py
-        subgraph params_DGCyTOF
-                158d4842ad76420278b5c3b7f9ec2e8c26e6b0cc276b34fbba931cfe2788c947['--default']
-        end
-        params_DGCyTOF:::param --o DGCyTOF
-        subgraph params_SCINA
-                f73ae62565a6ecf55364dd149d39df2dbcb3a9adaa6333f200874456f20528a2['--default']
-        end
-        params_SCINA:::param --o SCINA
-        subgraph params_CyCADA
-                3bdd6edfc81b99f9734940437d6a9243eb2c6b4808de1fc2f6ce463b1432aab5['--default']
-        end
-        params_CyCADA:::param --o CyCADA
-        subgraph params_GateMeClass
-                b5ae743ddc9c011d4766d976f3c7e10c617b529dfa06b6d9a776319c8a016f6e['--default]
-        end
-        params_GateMeClass:::param --o GateMeClass
-
-        params_partition_metrics:::param --o partition_metrics
+     ParamsD:::param
+     ParamsC:::param
+     ParamsG:::param
+    classDef param fill:#f96,stroke:#333,stroke-width:1px,color:#000

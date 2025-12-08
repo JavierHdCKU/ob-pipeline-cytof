@@ -6,12 +6,6 @@ The ob-pipeline-cytof enables transparent, reproducible, and objective benchmark
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 [![Docs](https://img.shields.io/badge/docs-latest-informational.svg)](<!-- documentation link -->)
 
-## TODO
-
-[] Reimplement metrics generation repo
-[] Define python and R environments
-[] Set up individual repos for each of the tools to be tested
-
 ---
 
 ## Table of Contents
@@ -296,3 +290,57 @@ These tools met all inclusion criteria, offered reliable automation, and produce
 The remaining tools—**CyCadas**, **Spectre**, **SCINA**, and **MetaCyto**—were excluded because they did not fully satisfy one or more requirements such as automation, documentation quality, maintenance status, or compatibility with standardized input/output formats.
 
 ---
+
+## Installation
+
+Follow the steps below to install Omnibenchmark and run the **ob-pipeline-cytof** benchmark.
+
+---
+
+### 1. Create a Conda Environment with Omnibenchmark
+
+If you do not already have Conda, install **Miniforge** (recommended):
+
+- Miniforge: https://conda-forge.org/miniforge/  
+- Git: https://git-scm.com/
+
+Download the Omnibenchmark environment file:
+
+```bash
+curl -sSL https://raw.githubusercontent.com/omnibenchmark/omnibenchmark/main/omni-environment.yml -o omni-environment.yml
+```
+Create and activate the environment:
+```bash
+conda create -n omnibenchmark python=3.12 -y
+conda activate omnibenchmark
+conda env update -f omni-environment.yml
+```
+Verify installation:
+
+```bash
+ob --version
+```
+
+more information about omnibenchmark installation can be found here: https://docs.omnibenchmark.org/latest/howto/
+
+### 2. Clone the ob-pipeline-cytof Repository
+
+git clone https://github.com/kaae-2/ob-pipeline-cytof
+cd ob-pipeline-cytof
+
+#### 2.1 Dry Run of the Benchmark
+A dry run validates that all modules and dependencies load correctly but does not execute the full workflow.
+
+We use --local-storage so that output stays local instead of being sent to an S3 bucket.
+```bash
+ob run benchmark -b Clustering_conda.yml --dry-run --local-storage
+```
+
+#### 2.2 Execute the Full Benchmark
+```bash
+ob run benchmark -b Clustering_conda.yml --cores 1 --local-storage
+```
+Increase --cores to speed up execution if your machine supports it.
+
+All results will be stored locally inside your .ob/ directory unless you configure different storage options.
+
